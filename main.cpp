@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include <math.h>
 #include <memory>
+#include "file.h"
+
+using namespace Misc;
 
 #define numof(array) (sizeof(array) / sizeof(array[0]))
 
@@ -49,9 +52,8 @@ int main(void)
 		}
 	}
 	{
-		FILE *fp = fopen("out.pcm", "w");
-		fwrite(m.get(), sizeof(int16_t) * length, 1, fp);
-		fclose(fp);
+		File file("out.pcm", "w");
+		file.write(m.get(), sizeof(int16_t) * length);
 	}
 	return 0;
 }
